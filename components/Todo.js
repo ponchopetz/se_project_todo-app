@@ -1,7 +1,7 @@
 class Todo {
-  constructor(data, templateElement) {
+  constructor(data, templateSelector) {
     this._data = data;
-    this._templateElement = templateElement;
+    this._templateSelector = templateSelector;
   }
 
   _setEventListeners() {
@@ -36,11 +36,17 @@ class Todo {
       this._todoDate.textContent = "";
     }
   }
+  _getTemplate() {
+    const template = document
+      .querySelector(this._templateSelector)
+      .content.querySelector(".todo")
+      .cloneNode(true);
+
+    return template;
+  }
 
   getView() {
-    this._todoElement = this._templateElement.content
-      .querySelector(".todo")
-      .cloneNode(true);
+    this._todoElement = this._getTemplate();
     const todoNameEl = this._todoElement.querySelector(".todo__name");
     this._todoDate = this._todoElement.querySelector(".todo__date");
     this._todoDeleteBtn = this._todoElement.querySelector(".todo__delete-btn");
