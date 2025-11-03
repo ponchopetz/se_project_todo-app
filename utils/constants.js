@@ -31,7 +31,6 @@ const validationConfig = {
 const selectors = {
   addTodoButton: ".button_action_add",
   addTodoPopup: "#add-todo-popup",
-  addTodoForm: ".popup__form",
   addTodoCloseBtn: ".popup__close",
   todosList: ".todos__list",
   todoTemplate: "#todo-template",
