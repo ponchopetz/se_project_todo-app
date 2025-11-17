@@ -1,16 +1,26 @@
 class Todo {
-  constructor(data, templateSelector) {
+  constructor(data, templateSelector, { handleToggleCompleted, handleDelete }) {
     this._data = data;
     this._templateSelector = templateSelector;
+    this._handleToggleCompleted = handleToggleCompleted;
+    this._handleDelete = handleDelete;
   }
 
   _setEventListeners() {
     this._todoCheckboxEl.addEventListener("change", () => {
       this._data.completed = !this._data.completed;
+
+      if (this._handleToggleCompleted) {
+        this._handleToggleCompleted(this._data.completed);
+      }
     });
 
     this._todoDeleteBtn.addEventListener("click", () => {
       this._todoElement.remove();
+
+      if (this._handleDelete) {
+        this._handleDelete(this._data.completed);
+      }
     });
   }
 
